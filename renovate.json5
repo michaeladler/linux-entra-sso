@@ -1,0 +1,30 @@
+// SPDX-FileCopyrightText: Copyright 2026 Siemens AG
+// SPDX-License-Identifier: MPL-2.0
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:best-practices",
+    "group:all",
+    "schedule:monthly",
+    ":gitSignOff",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimitNone",
+  ],
+  minimumReleaseAge: '3 days',
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["* 0-3 7 * *"],
+  },
+  assigneesFromCodeOwners: true,
+  separateMajorMinor: false,
+  packageRules: [
+    // group all lock file maintenance updates into a single MR
+    {
+      matchUpdateTypes: ["lockFileMaintenance"],
+      groupName: "all lock files",
+      groupSlug: "lock-files",
+    },
+  ],
+}
