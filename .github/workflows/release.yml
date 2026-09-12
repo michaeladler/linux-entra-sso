@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: get git committer
         run: |
@@ -57,28 +57,28 @@ jobs:
             --filename '{name}-{version}.thunderbird.xpi'
 
       - name: upload firefox extension
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: firefox-signed-xpi
           path: |
             build/linux_entra_sso-*.xpi
 
       - name: upload debian package
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: debian-package
           path: |
             pkgs/linux-entra-sso_*.deb
 
       - name: attest Firefox extension build
-        uses: actions/attest@v4
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
           subject-path: |
             build/linux_entra_sso-*.xpi
             pkgs/linux-entra-sso_*.deb
 
       - name: create release
-        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           files: |
             build/linux_entra_sso-*.xpi
@@ -129,7 +129,7 @@ jobs:
             Publish update manifest for Mozilla extensions, version ${{ github.ref_name }}.
 
       - name: release Chrome extension on CWS
-        uses: mnao305/chrome-extension-upload@fdfe79400af990f5145a319e834aee64907ccff4 # v6.0.0
+        uses: mnao305/chrome-extension-upload@f549d5d654694a7722d6abfa64c97409ad5e64c1 # v7.0.0
         with:
           file-path: build/Linux-Entra-SSO-*chrome.zip
           glob: true
